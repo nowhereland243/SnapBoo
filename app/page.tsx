@@ -208,7 +208,7 @@ export default function Home() {
         <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">
+              <h2 className="text-4xl font-bold mb-4 text-gray-900">
                 Better Than Bag Charms
               </h2>
               <p className="text-xl text-gray-600">
