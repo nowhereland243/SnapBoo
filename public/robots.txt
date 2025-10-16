@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and cart pages from search engines
+Disallow: /cart
+Disallow: /admin
+
+Sitemap: https://snapboo.com/sitemap.xml
+
