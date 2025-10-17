@@ -8,6 +8,7 @@ import StockCounter from "@/components/ui/StockCounter";
 import AnimatedButton from "@/components/ui/AnimatedButton";
 import FloatingEmoji from "@/components/ui/FloatingEmoji";
 import { labubuConfetti } from "@/lib/confetti";
+import { analytics } from "@/lib/analytics";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -104,7 +105,11 @@ export default function Hero() {
               </div>
 
               <div className="flex flex-col gap-3 pt-2 animate-in fade-in slide-in-from-bottom duration-700 delay-500">
-                <Link href="/product/labubu-grip" className="w-full">
+                <Link 
+                  href="/product/labubu-grip" 
+                  className="w-full"
+                  onClick={() => analytics.preOrderClick('hero-mobile', 31.20)}
+                >
                   <AnimatedButton
                     animationType="bounce"
                     size="lg"
@@ -114,7 +119,11 @@ export default function Hero() {
                     🎁 Pre-Order Now
                   </AnimatedButton>
                 </Link>
-                <Link href="/story2" className="w-full">
+                <Link 
+                  href="/story2" 
+                  className="w-full"
+                  onClick={() => analytics.clickStoryLink('hero-mobile')}
+                >
                   <AnimatedButton
                     variant="outline"
                     animationType="wiggle"
@@ -251,12 +260,18 @@ export default function Hero() {
                 <StockCounter total={100} sold={62} />
 
                 <div className="flex flex-col gap-4 pt-4 w-full max-w-xs">
-                  <Link href="/product/labubu-grip">
+                  <Link 
+                    href="/product/labubu-grip"
+                    onClick={() => analytics.preOrderClick('hero-desktop', 31.20)}
+                  >
                     <AnimatedButton animationType="bounce" size="lg" fullWidth>
                       🎁 Pre-Order Now
                     </AnimatedButton>
                   </Link>
-                  <Link href="/story2">
+                  <Link 
+                    href="/story2"
+                    onClick={() => analytics.clickStoryLink('hero-desktop')}
+                  >
                     <AnimatedButton
                       variant="outline"
                       animationType="wiggle"
