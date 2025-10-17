@@ -70,6 +70,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Ahrefs Site Verification */}
+        <meta
+          name="ahrefs-site-verification"
+          content="aba765ccc5d9c187ebe2bb922e92a2ea7017938696a5973d551b74deab8cbb56"
+        />
+        
         {/* Preconnect to external domains for better performance */}
         <link rel="preconnect" href="https://labubugirp.myshopify.com" />
         <link rel="preconnect" href="https://snapboo-analytics.vercel.app" />
