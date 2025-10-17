@@ -5,7 +5,8 @@ const fs = require("fs");
 const path = require("path");
 
 // 源目录
-const sourceDir = "/Users/nolanfeng/Library/Mobile Documents/com~apple~CloudDocs/Phone <-> Mac/Labubu Grip/untitled folder/untitled folder";
+const sourceDir =
+  "/Users/nolanfeng/Library/Mobile Documents/com~apple~CloudDocs/Phone <-> Mac/Labubu Grip/untitled folder/untitled folder";
 
 // 输出目录
 const outputDir = path.join(__dirname, "public/images/og");
@@ -32,7 +33,7 @@ console.log("═".repeat(70));
 
 async function optimizeImage(filename) {
   const inputPath = path.join(sourceDir, filename);
-  
+
   // 生成友好的文件名
   let outputName = filename
     .toLowerCase()
@@ -42,20 +43,20 @@ async function optimizeImage(filename) {
     .replace(/[_\s]+/g, "-")
     .replace(/修正拉布布和手指最终版/g, "og-labubu-final")
     .replace(/--+/g, "-");
-  
+
   const outputPath = path.join(outputDir, outputName);
-  
+
   console.log(`\n🔧 处理: ${filename}`);
   console.log(`  → 输出: ${outputName}`);
-  
+
   // 先尝试质量 80
   let quality = 80;
   let attempt = 1;
   let success = false;
-  
+
   while (quality >= 70 && !success) {
     console.log(`  → 尝试 quality ${quality}%...`);
-    
+
     await sharp(inputPath)
       .resize(1200, 630, {
         fit: "cover",
@@ -68,18 +69,18 @@ async function optimizeImage(filename) {
         mozjpeg: true, // 使用 mozjpeg 引擎获得更好的压缩
       })
       .toFile(outputPath + `.q${quality}`);
-    
+
     const fileSize = fs.statSync(outputPath + `.q${quality}`).size;
     const fileSizeKB = (fileSize / 1024).toFixed(1);
-    
+
     console.log(`    文件大小: ${fileSizeKB} KB`);
-    
+
     if (fileSize <= 150 * 1024) {
       // 小于 150KB，成功！
       fs.renameSync(outputPath + `.q${quality}`, outputPath);
       console.log(`  ✅ 成功! (${fileSizeKB} KB, quality ${quality}%)`);
       success = true;
-      
+
       return {
         original: filename,
         output: outputName,
@@ -93,7 +94,7 @@ async function optimizeImage(filename) {
       attempt++;
     }
   }
-  
+
   if (!success) {
     console.log(`  ⚠️  无法达到 150KB 目标，使用 quality 70%`);
     await sharp(inputPath)
@@ -108,12 +109,12 @@ async function optimizeImage(filename) {
         mozjpeg: true,
       })
       .toFile(outputPath);
-    
+
     const fileSize = fs.statSync(outputPath).size;
     const fileSizeKB = (fileSize / 1024).toFixed(1);
-    
+
     console.log(`  ✅ 完成 (${fileSizeKB} KB, quality 70%)`);
-    
+
     return {
       original: filename,
       output: outputName,
@@ -125,30 +126,31 @@ async function optimizeImage(filename) {
 
 async function main() {
   const results = [];
-  
+
   for (const file of files) {
     const result = await optimizeImage(file);
     if (result) {
       results.push(result);
     }
   }
-  
+
   // 总结
   console.log("\n\n═".repeat(70));
   console.log("📊 优化总结");
   console.log("═".repeat(70));
-  
+
   results.forEach((r, i) => {
     console.log(`\n${i + 1}. ${r.output}`);
     console.log(`   原文件: ${r.original}`);
     console.log(`   大小: ${r.size} KB`);
     console.log(`   质量: ${r.quality}%`);
-    console.log(`   状态: ${parseFloat(r.size) <= 150 ? "✅ 达标" : "⚠️  超标"}`);
+    console.log(
+      `   状态: ${parseFloat(r.size) <= 150 ? "✅ 达标" : "⚠️  超标"}`
+    );
   });
-  
+
   console.log("\n✨ 完成！所有图片已优化。");
   console.log(`📁 输出目录: ${outputDir}`);
 }
 
 main();
-
