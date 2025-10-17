@@ -101,7 +101,7 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
 
   return (
     <>
-      <div className="space-y-4">
+      <div className="space-y-6">
         {/* Main image - Swipeable and clickable */}
         <div
           className="relative w-full aspect-square bg-gray-50 rounded-2xl overflow-hidden cursor-pointer group"

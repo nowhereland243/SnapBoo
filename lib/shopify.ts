@@ -203,7 +203,7 @@ export async function getProducts() {
                 currencyCode
               }
             }
-            images(first: 5) {
+            images(first: 20) {
               edges {
                 node {
                   url
