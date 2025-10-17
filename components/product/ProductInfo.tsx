@@ -254,7 +254,14 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <button className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors bg-white">
+            <button
+              onClick={() =>
+                alert(
+                  "🍎 Apple Pay\n\nExpress checkout coming soon!\nWe're integrating with Shopify's secure payment system."
+                )
+              }
+              className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors bg-white"
+            >
               <svg
                 className="w-5 h-5 text-gray-900"
                 viewBox="0 0 24 24"
@@ -266,7 +273,14 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 Apple Pay
               </span>
             </button>
-            <button className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors bg-white">
+            <button
+              onClick={() =>
+                alert(
+                  "💙 PayPal\n\nExpress checkout coming soon!\nWe're integrating with Shopify's secure payment system."
+                )
+              }
+              className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors bg-white"
+            >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   fill="#003087"

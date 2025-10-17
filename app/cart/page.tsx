@@ -6,13 +6,28 @@ import { useCartStore } from "@/lib/store";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import { useState } from "react";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getTotalItems, getTotalPrice } =
     useCartStore();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
+
+  const handleCheckout = () => {
+    setIsCheckingOut(true);
+    // For now, show an alert. In production, this would redirect to Shopify checkout
+    alert(
+      `🎉 Checkout functionality coming soon!\n\n` +
+        `Your order:\n` +
+        `${totalItems} item${totalItems !== 1 ? "s" : ""}\n` +
+        `Total: $${totalPrice.toFixed(2)}\n\n` +
+        `We're connecting to Shopify's secure checkout. Stay tuned!`
+    );
+    setIsCheckingOut(false);
+  };
 
   if (items.length === 0) {
     return (
@@ -21,7 +36,9 @@ export default function CartPage() {
         <main className="flex-1 bg-gray-50 flex items-center justify-center py-20">
           <div className="text-center max-w-md mx-auto px-4">
             <div className="text-6xl mb-6">🛒</div>
-            <h1 className="text-3xl font-bold mb-4 text-gray-900">Your cart is empty</h1>
+            <h1 className="text-3xl font-bold mb-4 text-gray-900">
+              Your cart is empty
+            </h1>
             <p className="text-gray-600 mb-8">
               Looks like you haven't added any SnapBoo grips yet. Start
               shopping!
@@ -182,8 +199,14 @@ export default function CartPage() {
                 </div>
 
                 {/* Checkout button */}
-                <Button size="lg" fullWidth className="mb-4">
-                  Proceed to Checkout
+                <Button
+                  size="lg"
+                  fullWidth
+                  className="mb-4"
+                  onClick={handleCheckout}
+                  disabled={isCheckingOut}
+                >
+                  {isCheckingOut ? "Processing..." : "Proceed to Checkout"}
                 </Button>
 
                 <Link href="/">
