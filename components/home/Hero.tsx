@@ -256,7 +256,7 @@ export default function Hero() {
                       🎁 Pre-Order Now
                     </AnimatedButton>
                   </Link>
-                  <Link href="/story">
+                  <Link href="/story2">
                     <AnimatedButton
                       variant="outline"
                       animationType="wiggle"

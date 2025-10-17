@@ -46,19 +46,19 @@ export default function Header() {
             <nav className="hidden md:flex items-center space-x-8">
               <Link
                 href="/"
-                className="text-sm font-medium hover:text-primary-600 transition-colors"
+                className="text-sm font-medium text-gray-900 hover:text-primary-600 transition-colors"
               >
                 Home
               </Link>
               <Link
                 href="/story2"
-                className="text-sm font-medium hover:text-[#F5A742] transition-colors"
+                className="text-sm font-medium text-gray-900 hover:text-[#F5A742] transition-colors"
               >
                 Story
               </Link>
               <Link
                 href="/product/labubu-grip"
-                className="text-sm font-medium hover:text-primary-600 transition-colors"
+                className="text-sm font-medium text-gray-900 hover:text-primary-600 transition-colors"
               >
                 Product
               </Link>
@@ -69,7 +69,7 @@ export default function Header() {
               {/* Cart icon - Larger touch target on mobile */}
               <Link
                 href="/cart"
-                className="p-3 md:p-2 hover:bg-gray-100 rounded-full transition-colors relative"
+                className="p-3 md:p-2 hover:bg-gray-100 rounded-full transition-colors relative text-gray-900"
                 aria-label="Shopping cart"
               >
                 <svg
@@ -95,7 +95,7 @@ export default function Header() {
               {/* Mobile menu button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-3 hover:bg-gray-100 rounded-full transition-colors"
+                className="md:hidden p-3 hover:bg-gray-100 rounded-full transition-colors text-gray-900"
                 aria-label="Menu"
               >
                 {mobileMenuOpen ? (
