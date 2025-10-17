@@ -19,6 +19,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const addItem = useCartStore((state) => state.addItem);
@@ -99,15 +100,16 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
   return (
     <>
-      <div className="space-y-6 pb-8 md:pb-0">
+      <div className="pb-8 md:pb-0">
         <Toaster position="top-center" />
 
         {/* Mobile Image Gallery - Only visible on mobile */}
-        <div className="lg:hidden -mx-4 sm:mx-0">
+        <div className="lg:hidden -mx-4 sm:mx-0 mb-4">
           <div
-            className="relative w-full aspect-square bg-gray-50 sm:rounded-2xl overflow-hidden"
+            className="relative w-full aspect-square bg-gray-50 sm:rounded-2xl overflow-hidden cursor-pointer"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
+            onClick={() => setIsFullscreen(true)}
           >
             {currentImage && (
               <Image
@@ -125,7 +127,10 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 {product.images.edges.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setSelectedImageIndex(index)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImageIndex(index);
+                    }}
                     className={`w-2 h-2 rounded-full transition-all ${
                       selectedImageIndex === index
                         ? "bg-pink-600 w-6"
@@ -140,7 +145,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         </div>
 
         {/* Product title */}
-        <div>
+        <div className="space-y-6">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
             {product.title}
           </h1>
@@ -367,6 +372,106 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Image Viewer - Mobile only */}
+      {isFullscreen && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
+          onClick={() => setIsFullscreen(false)}
+        >
+          {/* Close button */}
+          <button
+            className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full text-white"
+            onClick={() => setIsFullscreen(false)}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {/* Image */}
+          {currentImage && (
+            <div className="relative w-full h-full">
+              <Image
+                src={currentImage.url}
+                alt={currentImage.altText || "Product image"}
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          )}
+
+          {/* Image counter */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full">
+            {selectedImageIndex + 1} / {product.images.edges.length}
+          </div>
+
+          {/* Navigation arrows */}
+          {product.images.edges.length > 1 && (
+            <>
+              <button
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full text-white disabled:opacity-30"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedImageIndex((prev) =>
+                    prev > 0 ? prev - 1 : product.images.edges.length - 1
+                  );
+                }}
+                disabled={selectedImageIndex === 0}
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full text-white disabled:opacity-30"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedImageIndex((prev) =>
+                    prev < product.images.edges.length - 1 ? prev + 1 : 0
+                  );
+                }}
+                disabled={selectedImageIndex === product.images.edges.length - 1}
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 }
