@@ -280,7 +280,8 @@ export async function createCheckout(
 
   const linesString = lineItems
     .map(
-      (item) => `{ merchandiseId: "${item.variantId}", quantity: ${item.quantity} }`
+      (item) =>
+        `{ merchandiseId: "${item.variantId}", quantity: ${item.quantity} }`
     )
     .join(", ");
 
@@ -346,7 +347,7 @@ export async function createCheckout(
   return {
     id: cart.id,
     webUrl: cart.checkoutUrl,
-    lineItems: cart.lines
+    lineItems: cart.lines,
   };
 }
 
