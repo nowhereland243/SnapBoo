@@ -220,24 +220,13 @@ export default function CartPage() {
                   </span>
                 </div>
 
-                {/* Checkout button - Shopify style */}
+                {/* Shop Pay button */}
                 <button
                   onClick={handleCheckout}
                   disabled={isCheckingOut}
-                  className="w-full bg-black text-white rounded-md py-4 px-6 font-medium text-base hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-3"
+                  className="w-full bg-[#5a31f4] text-white rounded-md py-4 px-6 font-medium text-base hover:bg-[#4c28d4] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-4"
                 >
-                  {isCheckingOut ? "Processing..." : "Add to cart"}
-                </button>
-
-                {/* Shop Pay button */}
-                <button
-                  disabled
-                  className="w-full bg-[#5a31f4] text-white rounded-md py-4 px-6 font-medium text-base flex items-center justify-center gap-2 opacity-50 cursor-not-allowed mb-4"
-                >
-                  <span className="text-lg font-semibold">Buy with</span>
-                  <svg className="h-5" viewBox="0 0 80 27" fill="white">
-                    <path d="M 14.5 0.5 C 13.1 0.5 11.9 1.2 11.1 2.2 C 10.3 1.2 9.1 0.5 7.7 0.5 C 5 0.5 2.8 2.7 2.8 5.4 C 2.8 9.1 6.5 12.1 10.1 15.3 L 11.1 16.2 L 12.1 15.3 C 15.7 12.1 19.4 9.1 19.4 5.4 C 19.4 2.7 17.2 0.5 14.5 0.5 Z M 28 6 L 28 20 L 32 20 L 32 12.5 C 32 10.3 33.8 8.5 36 8.5 C 38.2 8.5 40 10.3 40 12.5 L 40 20 L 44 20 L 44 11.5 C 44 7.9 41.1 5 37.5 5 C 35.3 5 33.3 6 32 7.6 L 32 6 L 28 6 Z M 50 5 C 45.6 5 42 8.6 42 13 C 42 17.4 45.6 21 50 21 C 54.4 21 58 17.4 58 13 C 58 8.6 54.4 5 50 5 Z M 50 8.5 C 52.5 8.5 54.5 10.5 54.5 13 C 54.5 15.5 52.5 17.5 50 17.5 C 47.5 17.5 45.5 15.5 45.5 13 C 45.5 10.5 47.5 8.5 50 8.5 Z M 62 6 L 62 20 L 66 20 L 66 13.5 C 66 10.5 68 8.5 71 8.5 L 71 5 C 68.2 5 65.8 6.3 64.5 8.3 L 64.5 6 L 62 6 Z"></path>
-                  </svg>
+                  {isCheckingOut ? "Processing..." : "Buy with Shop"}
                 </button>
 
                 <Link href="/">
