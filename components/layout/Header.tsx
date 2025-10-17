@@ -6,7 +6,7 @@ import { useCartStore } from "@/lib/store";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const getTotalItems = useCartStore((state) => state.getTotalItems);
+  const totalItems = useCartStore((state) => state.getTotalItems());
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -85,9 +85,9 @@ export default function Header() {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                {getTotalItems() > 0 && (
+                {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold">
-                    {getTotalItems()}
+                    {totalItems}
                   </span>
                 )}
               </Link>
@@ -235,9 +235,9 @@ export default function Header() {
                 className="text-lg font-medium py-4 px-4 hover:bg-white/30 rounded-xl transition-colors active:bg-white/50 flex items-center justify-between touch-manipulation"
               >
                 <span>🛒 Cart</span>
-                {getTotalItems() > 0 && (
+                {totalItems > 0 && (
                   <span className="bg-pink-600 text-white text-sm rounded-full h-6 w-6 flex items-center justify-center font-semibold">
-                    {getTotalItems()}
+                    {totalItems}
                   </span>
                 )}
               </Link>
