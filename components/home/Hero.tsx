@@ -9,6 +9,7 @@ import AnimatedButton from "@/components/ui/AnimatedButton";
 import FloatingEmoji from "@/components/ui/FloatingEmoji";
 import { labubuConfetti } from "@/lib/confetti";
 import { analytics } from "@/lib/analytics";
+import { blurDataURLs } from "@/lib/blur-placeholders";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -58,6 +59,8 @@ export default function Hero() {
             fill
             className="object-cover object-center opacity-90"
             priority
+            placeholder="blur"
+            blurDataURL={blurDataURLs["/images/hero/hero-labubu-magsafe.png"]}
           />
         </div>
 
@@ -68,6 +71,8 @@ export default function Hero() {
             fill
             className="object-cover opacity-80"
             priority
+            placeholder="blur"
+            blurDataURL={blurDataURLs["/images/hero/hero-labubu-magsafe.png"]}
           />
         </div>
 

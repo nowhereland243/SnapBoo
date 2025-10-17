@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/home/Hero";
 import Image from "next/image";
+import { blurDataURLs } from "@/lib/blur-placeholders";
 
 export default function Home() {
   return (
@@ -71,6 +72,9 @@ export default function Home() {
                     fill
                     className="object-cover scale-[1.2]"
                     style={{ objectPosition: "center 45%" }}
+                    placeholder="blur"
+                    blurDataURL={blurDataURLs["/images/lifestyle/beach-scene.jpg"]}
+                    loading="lazy"
                   />
                 </div>
 
