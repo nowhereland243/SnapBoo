@@ -217,23 +217,25 @@ export default function ProductGallery({ images }: ProductGalleryProps) {
 
         {/* Thumbnail carousel - Larger touch targets on mobile */}
         {images.length > 1 && (
-          <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-thin snap-x snap-mandatory">
+          <div className="flex gap-2 md:gap-3 overflow-x-auto pb-2 pt-1 scrollbar-thin snap-x snap-mandatory">
             {images.map((image, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedIndex(index)}
-                className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all snap-start ${
+                className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg border-2 transition-all snap-start ${
                   selectedIndex === index
                     ? "border-primary-600 ring-2 ring-primary-200 scale-105"
                     : "border-gray-200 hover:border-gray-300"
                 }`}
               >
-                <Image
-                  src={image.node.url}
-                  alt={image.node.altText || `Thumbnail ${index + 1}`}
-                  fill
-                  className="object-contain p-1"
-                />
+                <div className="relative w-full h-full rounded-md overflow-hidden">
+                  <Image
+                    src={image.node.url}
+                    alt={image.node.altText || `Thumbnail ${index + 1}`}
+                    fill
+                    className="object-contain p-1"
+                  />
+                </div>
               </button>
             ))}
           </div>
