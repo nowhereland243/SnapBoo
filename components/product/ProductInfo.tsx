@@ -10,6 +10,7 @@ import { useCartStore } from "@/lib/store";
 import { labubuImageConfetti, labubuHeartRain } from "@/lib/image-confetti";
 import toast, { Toaster } from "react-hot-toast";
 import { playSound } from "@/lib/sounds";
+import { analytics } from "@/lib/analytics";
 
 interface ProductInfoProps {
   product: ShopifyProduct;
@@ -59,6 +60,9 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
   const handleAddToCart = async () => {
     setIsAdding(true);
+
+    // 📊 Track add to cart event
+    analytics.addToCart(product.id, quantity, price * quantity);
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 500));

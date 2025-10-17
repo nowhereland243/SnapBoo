@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useCartStore } from "@/lib/store";
+import { analytics } from "@/lib/analytics";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -138,7 +139,11 @@ export default function Header() {
         <div className="container mx-auto">
           {/* Mobile version - scrolling marquee */}
           <div className="md:hidden overflow-hidden">
-            <Link href="/product/labubu-grip" className="block">
+            <Link
+              href="/product/labubu-grip"
+              className="block"
+              onClick={() => analytics.clickTopBanner()}
+            >
               <div className="animate-marquee whitespace-nowrap text-sm font-medium">
                 <span className="inline-block px-4">
                   🎉 Pre-Order SnapBoo Now - Limited to First 100 Units | 20%
@@ -164,6 +169,7 @@ export default function Header() {
             <Link
               href="/product/labubu-grip"
               className="ml-2 underline hover:no-underline font-semibold"
+              onClick={() => analytics.clickTopBanner()}
             >
               Order Now →
             </Link>

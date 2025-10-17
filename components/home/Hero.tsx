@@ -105,10 +105,10 @@ export default function Hero() {
               </div>
 
               <div className="flex flex-col gap-3 pt-2 animate-in fade-in slide-in-from-bottom duration-700 delay-500">
-                <Link 
-                  href="/product/labubu-grip" 
+                <Link
+                  href="/product/labubu-grip"
                   className="w-full"
-                  onClick={() => analytics.preOrderClick('hero-mobile', 31.20)}
+                  onClick={() => analytics.preOrderClick("hero-mobile", 31.2)}
                 >
                   <AnimatedButton
                     animationType="bounce"
@@ -119,10 +119,10 @@ export default function Hero() {
                     🎁 Pre-Order Now
                   </AnimatedButton>
                 </Link>
-                <Link 
-                  href="/story2" 
+                <Link
+                  href="/story2"
                   className="w-full"
-                  onClick={() => analytics.clickStoryLink('hero-mobile')}
+                  onClick={() => analytics.clickStoryLink("hero-mobile")}
                 >
                   <AnimatedButton
                     variant="outline"
@@ -260,17 +260,19 @@ export default function Hero() {
                 <StockCounter total={100} sold={62} />
 
                 <div className="flex flex-col gap-4 pt-4 w-full max-w-xs">
-                  <Link 
+                  <Link
                     href="/product/labubu-grip"
-                    onClick={() => analytics.preOrderClick('hero-desktop', 31.20)}
+                    onClick={() =>
+                      analytics.preOrderClick("hero-desktop", 31.2)
+                    }
                   >
                     <AnimatedButton animationType="bounce" size="lg" fullWidth>
                       🎁 Pre-Order Now
                     </AnimatedButton>
                   </Link>
-                  <Link 
+                  <Link
                     href="/story2"
-                    onClick={() => analytics.clickStoryLink('hero-desktop')}
+                    onClick={() => analytics.clickStoryLink("hero-desktop")}
                   >
                     <AnimatedButton
                       variant="outline"

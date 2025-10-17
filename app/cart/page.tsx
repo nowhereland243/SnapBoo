@@ -8,6 +8,7 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
 import { createCheckout } from "@/lib/shopify";
+import { analytics } from "@/lib/analytics";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getTotalItems, getTotalPrice } =
@@ -19,6 +20,9 @@ export default function CartPage() {
 
   const handleCheckout = async () => {
     setIsCheckingOut(true);
+
+    // 📊 Track checkout event
+    analytics.proceedToCheckout(totalPrice, totalItems);
 
     try {
       // Convert cart items to Shopify line items format
