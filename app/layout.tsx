@@ -73,9 +73,18 @@ export default function RootLayout({
         {/* Preconnect to external domains for better performance */}
         <link rel="preconnect" href="https://labubugirp.myshopify.com" />
         <link rel="preconnect" href="https://snapboo-analytics.vercel.app" />
+        <link rel="preconnect" href="https://analytics.ahrefs.com" />
         <link rel="dns-prefetch" href="https://labubugirp.myshopify.com" />
         <link rel="dns-prefetch" href="https://snapboo-analytics.vercel.app" />
+        <link rel="dns-prefetch" href="https://analytics.ahrefs.com" />
 
+        {/* Ahrefs Web Analytics */}
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="BG1lGkGybEX0jCy8zE19iw"
+          async
+        />
+        
         {/* Umami Analytics */}
         <script
           defer
