@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://snap-boo.com'),
+  metadataBase: new URL("https://snap-boo.com"),
   title: {
     default: "SnapBoo - The Ultimate Labubu MagSafe Grip",
     template: "%s | SnapBoo",
@@ -75,7 +75,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://snapboo-analytics.vercel.app" />
         <link rel="dns-prefetch" href="https://labubugirp.myshopify.com" />
         <link rel="dns-prefetch" href="https://snapboo-analytics.vercel.app" />
-        
+
         {/* Umami Analytics */}
         <script
           defer

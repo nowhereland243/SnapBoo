@@ -30,7 +30,8 @@ export async function generateMetadata({
 
   return {
     title: `${product.title} - Pre-Order Now`,
-    description: product.description || "The ultimate MagSafe phone grip for your Labubu.",
+    description:
+      product.description || "The ultimate MagSafe phone grip for your Labubu.",
     openGraph: {
       title: product.title,
       description: product.description,
@@ -98,13 +99,13 @@ export default async function ProductPage({
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       {/* JSON-LD Structured Data for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
-      
+
       <main className="flex-1 bg-white">
         {/* Product section */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-6 lg:py-12">

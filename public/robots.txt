@@ -5,5 +5,5 @@ Allow: /
 Disallow: /cart
 Disallow: /admin
 
-Sitemap: https://snapboo.com/sitemap.xml
+Sitemap: https://snap-boo.com/sitemap.xml
 
