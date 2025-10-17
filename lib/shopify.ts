@@ -278,25 +278,36 @@ export async function createCheckout(
     )
     .join(", ");
 
+  const linesString = lineItems
+    .map(
+      (item) => `{ merchandiseId: "${item.variantId}", quantity: ${item.quantity} }`
+    )
+    .join(", ");
+
   const query = `
     mutation {
-      checkoutCreate(input: {
-        lineItems: [${lineItemsString}]
+      cartCreate(input: {
+        lines: [${linesString}]
       }) {
-        checkout {
+        cart {
           id
-          webUrl
-          lineItems(first: 25) {
+          checkoutUrl
+          lines(first: 25) {
             edges {
               node {
                 id
-                title
                 quantity
+                merchandise {
+                  ... on ProductVariant {
+                    id
+                    title
+                  }
+                }
               }
             }
           }
         }
-        checkoutUserErrors {
+        userErrors {
           code
           field
           message
@@ -306,30 +317,37 @@ export async function createCheckout(
   `;
 
   console.log("Shopify checkout query:", query);
-  
-  const response = await ShopifyData(query);
-  
-  console.log("Shopify checkout response:", JSON.stringify(response, null, 2));
 
-  if (!response.data || !response.data.checkoutCreate) {
+  const response = await ShopifyData(query);
+
+  console.log("Shopify cart response:", JSON.stringify(response, null, 2));
+
+  if (!response.data || !response.data.cartCreate) {
     throw new Error("Invalid response from Shopify API");
   }
 
-  if (response.data.checkoutCreate.checkoutUserErrors && 
-      response.data.checkoutCreate.checkoutUserErrors.length > 0) {
-    const errors = response.data.checkoutCreate.checkoutUserErrors;
-    console.error("Checkout user errors:", errors);
+  if (
+    response.data.cartCreate.userErrors &&
+    response.data.cartCreate.userErrors.length > 0
+  ) {
+    const errors = response.data.cartCreate.userErrors;
+    console.error("Cart user errors:", errors);
     const errorMessages = errors.map((e: any) => e.message).join(", ");
-    throw new Error(`Shopify checkout error: ${errorMessages}`);
+    throw new Error(`Shopify cart error: ${errorMessages}`);
   }
 
-  const checkout = response.data.checkoutCreate.checkout;
-  
-  if (!checkout || !checkout.webUrl) {
+  const cart = response.data.cartCreate.cart;
+
+  if (!cart || !cart.checkoutUrl) {
     throw new Error("No checkout URL received from Shopify");
   }
-  
-  return checkout;
+
+  // Return in compatible format
+  return {
+    id: cart.id,
+    webUrl: cart.checkoutUrl,
+    lineItems: cart.lines
+  };
 }
 
 // 更新购物车
