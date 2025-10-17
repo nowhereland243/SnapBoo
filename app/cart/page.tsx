@@ -41,7 +41,7 @@ export default function CartPage() {
       <Header />
       <main className="flex-1 bg-gray-50 py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold mb-8">
+          <h1 className="text-3xl font-bold mb-8 text-gray-900">
             Shopping Cart ({totalItems} item{totalItems !== 1 ? "s" : ""})
           </h1>
 
@@ -69,11 +69,11 @@ export default function CartPage() {
                     {/* Product info - Flexible layout */}
                     <div className="flex-1 min-w-0 flex flex-col sm:block">
                       <div className="flex items-start justify-between gap-2 mb-2">
-                        <h3 className="font-semibold text-sm sm:text-lg flex-1 min-w-0">
+                        <h3 className="font-semibold text-sm sm:text-lg flex-1 min-w-0 text-gray-900">
                           {item.title}
                         </h3>
                         {/* Price on mobile - right side */}
-                        <p className="sm:hidden font-bold text-base whitespace-nowrap">
+                        <p className="sm:hidden font-bold text-base whitespace-nowrap text-gray-900">
                           ${(item.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
@@ -89,18 +89,18 @@ export default function CartPage() {
                             onClick={() =>
                               updateQuantity(item.id, item.quantity - 1)
                             }
-                            className="w-8 h-8 rounded-xl border border-gray-300 backdrop-blur-md bg-white/50 flex items-center justify-center hover:bg-white/80 shadow-sm transition-all"
+                            className="w-8 h-8 rounded-xl border border-gray-300 backdrop-blur-md bg-white/50 flex items-center justify-center hover:bg-white/80 shadow-sm transition-all text-gray-900 font-semibold"
                           >
                             -
                           </button>
-                          <span className="w-8 text-center font-medium">
+                          <span className="w-8 text-center font-medium text-gray-900">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() =>
                               updateQuantity(item.id, item.quantity + 1)
                             }
-                            className="w-8 h-8 rounded-xl border border-gray-300 backdrop-blur-md bg-white/50 flex items-center justify-center hover:bg-white/80 shadow-sm transition-all"
+                            className="w-8 h-8 rounded-xl border border-gray-300 backdrop-blur-md bg-white/50 flex items-center justify-center hover:bg-white/80 shadow-sm transition-all text-gray-900 font-semibold"
                           >
                             +
                           </button>
@@ -118,7 +118,7 @@ export default function CartPage() {
 
                     {/* Item total - Desktop only */}
                     <div className="hidden sm:block text-right">
-                      <p className="font-bold text-lg">
+                      <p className="font-bold text-lg text-gray-900">
                         ${(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
@@ -130,7 +130,7 @@ export default function CartPage() {
             {/* Order summary */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-lg p-6 shadow-sm sticky top-24">
-                <h2 className="text-xl font-bold mb-6">Order Summary</h2>
+                <h2 className="text-xl font-bold mb-6 text-gray-900">Order Summary</h2>
 
                 {/* Pre-order notice */}
                 <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -171,7 +171,7 @@ export default function CartPage() {
 
                 {/* Total */}
                 <div className="flex justify-between items-baseline mb-6">
-                  <span className="text-lg font-semibold">Total</span>
+                  <span className="text-lg font-semibold text-gray-900">Total</span>
                   <span className="text-2xl font-bold text-primary-600">
                     ${totalPrice.toFixed(2)}
                   </span>
