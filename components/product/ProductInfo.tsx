@@ -163,7 +163,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         </div>
 
         {/* Stock counter */}
-        <StockCounter total={100} sold={0} />
+        <StockCounter total={100} sold={60} />
 
         {/* Quantity selector - Desktop only (mobile in fixed bar) */}
         <div className="hidden md:block space-y-3">
@@ -240,60 +240,6 @@ export default function ProductInfo({ product }: ProductInfoProps) {
               ? `🎁 Pre-Order (${quantity})`
               : "🎁 Pre-Order Now"}
           </AnimatedButton>
-        </div>
-
-        {/* Express checkout buttons - Desktop only */}
-        <div className="hidden md:block space-y-2">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or pay with</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <button
-              onClick={() =>
-                alert(
-                  "🍎 Apple Pay\n\nExpress checkout coming soon!\nWe're integrating with Shopify's secure payment system."
-                )
-              }
-              className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors bg-white"
-            >
-              <svg
-                className="w-5 h-5 text-gray-900"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-              </svg>
-              <span className="text-sm font-medium text-gray-900">
-                Apple Pay
-              </span>
-            </button>
-            <button
-              onClick={() =>
-                alert(
-                  "💙 PayPal\n\nExpress checkout coming soon!\nWe're integrating with Shopify's secure payment system."
-                )
-              }
-              className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors bg-white"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24">
-                <path
-                  fill="#003087"
-                  d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 2.595a.77.77 0 0 1 .76-.634h4.606c.34 0 .617.28.617.625v18.096a.641.641 0 0 1-.85.655z"
-                />
-                <path
-                  fill="#0070E0"
-                  d="M19.534 2.595a.771.771 0 0 0-.761-.634h-4.605a.641.641 0 0 0-.633.74l3.108 18.002a.77.77 0 0 0 .76.634h4.606a.641.641 0 0 0 .633-.74l-3.108-18.002z"
-                />
-              </svg>
-              <span className="text-sm font-medium text-gray-900">PayPal</span>
-            </button>
-          </div>
         </div>
 
         {/* Trust badges - Desktop only */}

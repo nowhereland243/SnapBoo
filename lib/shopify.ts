@@ -238,6 +238,12 @@ export async function getProduct(handle: string) {
             currencyCode
           }
         }
+        compareAtPriceRange {
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
         images(first: 20) {
           edges {
             node {

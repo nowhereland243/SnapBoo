@@ -9,10 +9,20 @@ interface ProductDetailsProps {
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  const [openSection, setOpenSection] = useState<string | null>("materials");
+  const [openSections, setOpenSections] = useState<string[]>([
+    "materials",
+    "features",
+    "design",
+    "authenticity",
+    "headsup",
+  ]);
 
   const toggleSection = (section: string) => {
-    setOpenSection(openSection === section ? null : section);
+    setOpenSections((prev) =>
+      prev.includes(section)
+        ? prev.filter((s) => s !== section)
+        : [...prev, section]
+    );
   };
 
   const features = [
@@ -65,7 +75,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </span>
             <svg
               className={`w-5 h-5 transition-transform ${
-                openSection === "materials" ? "rotate-180" : ""
+                openSections.includes("materials") ? "rotate-180" : ""
               }`}
               fill="none"
               stroke="currentColor"
@@ -79,7 +89,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               />
             </svg>
           </button>
-          {openSection === "materials" && (
+          {openSections.includes("materials") && (
             <div className="px-6 py-4 bg-gray-50 space-y-4">
               <div className="prose max-w-none">
                 <ul className="space-y-2 text-gray-900">
@@ -128,7 +138,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </span>
             <svg
               className={`w-5 h-5 transition-transform ${
-                openSection === "features" ? "rotate-180" : ""
+                openSections.includes("features") ? "rotate-180" : ""
               }`}
               fill="none"
               stroke="currentColor"
@@ -142,7 +152,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               />
             </svg>
           </button>
-          {openSection === "features" && (
+          {openSections.includes("features") && (
             <div className="px-4 md:px-6 py-4 bg-gray-50">
               {/* Mobile: Card layout */}
               <div className="md:hidden space-y-4">
@@ -220,7 +230,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </span>
             <svg
               className={`w-5 h-5 transition-transform ${
-                openSection === "concept" ? "rotate-180" : ""
+                openSections.includes("design") ? "rotate-180" : ""
               }`}
               fill="none"
               stroke="currentColor"
@@ -234,7 +244,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               />
             </svg>
           </button>
-          {openSection === "concept" && (
+          {openSections.includes("design") && (
             <div className="px-6 py-4 bg-gray-50">
               <div className="prose max-w-none text-gray-900">
                 <p>
@@ -266,7 +276,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </span>
             <svg
               className={`w-5 h-5 transition-transform ${
-                openSection === "origin" ? "rotate-180" : ""
+                openSections.includes("authenticity") ? "rotate-180" : ""
               }`}
               fill="none"
               stroke="currentColor"
@@ -280,7 +290,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               />
             </svg>
           </button>
-          {openSection === "origin" && (
+          {openSections.includes("authenticity") && (
             <div className="px-6 py-4 bg-gray-50">
               <div className="space-y-3 text-gray-900">
                 <p>
@@ -316,7 +326,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </span>
             <svg
               className={`w-5 h-5 transition-transform ${
-                openSection === "compatibility" ? "rotate-180" : ""
+                openSections.includes("headsup") ? "rotate-180" : ""
               }`}
               fill="none"
               stroke="currentColor"
@@ -330,7 +340,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               />
             </svg>
           </button>
-          {openSection === "compatibility" && (
+          {openSections.includes("headsup") && (
             <div className="px-6 py-4 bg-gray-50">
               <div className="space-y-4 text-gray-900">
                 <p>
