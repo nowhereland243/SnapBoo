@@ -21,7 +21,7 @@ export default function CartPage() {
         <main className="flex-1 bg-gray-50 flex items-center justify-center py-20">
           <div className="text-center max-w-md mx-auto px-4">
             <div className="text-6xl mb-6">🛒</div>
-            <h1 className="text-3xl font-bold mb-4">Your cart is empty</h1>
+            <h1 className="text-3xl font-bold mb-4 text-gray-900">Your cart is empty</h1>
             <p className="text-gray-600 mb-8">
               Looks like you haven't added any SnapBoo grips yet. Start
               shopping!
@@ -130,7 +130,9 @@ export default function CartPage() {
             {/* Order summary */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-lg p-6 shadow-sm sticky top-24">
-                <h2 className="text-xl font-bold mb-6 text-gray-900">Order Summary</h2>
+                <h2 className="text-xl font-bold mb-6 text-gray-900">
+                  Order Summary
+                </h2>
 
                 {/* Pre-order notice */}
                 <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
@@ -171,7 +173,9 @@ export default function CartPage() {
 
                 {/* Total */}
                 <div className="flex justify-between items-baseline mb-6">
-                  <span className="text-lg font-semibold text-gray-900">Total</span>
+                  <span className="text-lg font-semibold text-gray-900">
+                    Total
+                  </span>
                   <span className="text-2xl font-bold text-primary-600">
                     ${totalPrice.toFixed(2)}
                   </span>
