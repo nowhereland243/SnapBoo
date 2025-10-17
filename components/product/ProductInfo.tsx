@@ -44,13 +44,15 @@ export default function ProductInfo({ product }: ProductInfoProps) {
 
     if (Math.abs(diff) > swipeThreshold) {
       if (diff > 0) {
-        // Swipe left - next image
+        // Swipe left - next image (循环)
         setSelectedImageIndex((prev) =>
-          prev < product.images.edges.length - 1 ? prev + 1 : prev
+          prev < product.images.edges.length - 1 ? prev + 1 : 0
         );
       } else {
-        // Swipe right - previous image
-        setSelectedImageIndex((prev) => (prev > 0 ? prev - 1 : prev));
+        // Swipe right - previous image (循环)
+        setSelectedImageIndex((prev) =>
+          prev > 0 ? prev - 1 : product.images.edges.length - 1
+        );
       }
     }
   };
@@ -378,6 +380,8 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <div
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
           onClick={() => setIsFullscreen(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           {/* Close button */}
           <button
@@ -421,14 +425,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           {product.images.edges.length > 1 && (
             <>
               <button
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full text-white disabled:opacity-30"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full text-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedImageIndex((prev) =>
                     prev > 0 ? prev - 1 : product.images.edges.length - 1
                   );
                 }}
-                disabled={selectedImageIndex === 0}
               >
                 <svg
                   className="w-6 h-6"
@@ -445,14 +448,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 </svg>
               </button>
               <button
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full text-white disabled:opacity-30"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 backdrop-blur-sm rounded-full text-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedImageIndex((prev) =>
                     prev < product.images.edges.length - 1 ? prev + 1 : 0
                   );
                 }}
-                disabled={selectedImageIndex === product.images.edges.length - 1}
               >
                 <svg
                   className="w-6 h-6"
