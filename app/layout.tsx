@@ -17,6 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Umami Analytics */}
+        <script
+          defer
+          src="https://snapboo-analytics.vercel.app/script.js"
+          data-website-id="bdd16d84-aeeb-40fc-b586-3082ca06ecc9"
+        />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
       </body>
