@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 
 export default function HermesFirstTimeNotice() {
   return (
-    <section className="py-8 md:py-16 bg-[#F5A742]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-8 md:py-16 bg-[#f9cee8]">
+      <div className="container mx-auto px-0 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
+          className="max-w-4xl mx-auto px-4 sm:px-0"
         >
           <div className="bg-[#FFE66D] border-[3px] md:border-[4px] border-black p-4 sm:p-6 md:p-12 shadow-[4px_4px_0_#000] md:shadow-[8px_8px_0_#000]">
             {/* Icon and Badge */}
@@ -112,6 +112,15 @@ export default function HermesFirstTimeNotice() {
                   NEW YORK ↔️ SHANGHAI
                 </span>
               </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="mt-6 md:mt-8">
+              <a href="/product/labubu-grip" className="block">
+                <button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-black text-base md:text-lg py-4 md:py-5 px-6 border-[3px] md:border-[4px] border-black shadow-[4px_4px_0_#000] md:shadow-[6px_6px_0_#000] hover:shadow-[2px_2px_0_#000] transition-all active:shadow-none uppercase">
+                  🎁 Pre-Order Now - $31.20
+                </button>
+              </a>
             </div>
           </div>
         </motion.div>
