@@ -41,7 +41,7 @@ export async function generateMetadata({
         height: edge.node.height || 630,
         alt: edge.node.altText || product.title,
       })),
-      type: "product",
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
