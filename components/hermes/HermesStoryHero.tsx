@@ -129,7 +129,7 @@ export default function HermesStoryHero() {
                   aria-label="Tap for surprise"
                 >
                   <Image
-                    src="/images/story2/hero-mother-son-labubu.png"
+                    src="/images/story2/hero-mother-son-labubu2.png"
                     alt="Mother and son connected through Labubu across Shanghai and New York"
                     fill
                     className="object-contain p-4 md:p-6 lg:p-8"
