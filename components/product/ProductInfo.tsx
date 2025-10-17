@@ -170,7 +170,9 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         </div>
 
         {/* Stock counter */}
-        <StockCounter total={100} sold={62} />
+        <div className="mt-[3px]">
+          <StockCounter total={100} sold={62} />
+        </div>
 
         {/* Quantity selector - Desktop only (mobile in fixed bar) */}
         <div className="hidden md:block space-y-3">
