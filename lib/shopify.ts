@@ -332,3 +332,66 @@ export async function updateCheckout(checkoutId: string, lineItems: any[]) {
   const checkout = response.data.checkoutLineItemsReplace.checkout || {};
   return checkout;
 }
+
+// Create a new checkout and return the checkout URL
+export async function createCheckout(lineItems: Array<{ variantId: string; quantity: number }>) {
+  const query = `
+    mutation checkoutCreate($input: CheckoutCreateInput!) {
+      checkoutCreate(input: $input) {
+        checkout {
+          id
+          webUrl
+          lineItems(first: 5) {
+            edges {
+              node {
+                id
+                title
+                quantity
+              }
+            }
+          }
+        }
+        checkoutUserErrors {
+          code
+          field
+          message
+        }
+      }
+    }
+  `;
+
+  const variables = {
+    input: {
+      lineItems: lineItems,
+    },
+  };
+
+  try {
+    const response = await fetch(`https://${domain}/api/2024-01/graphql.json`, {
+      method: "POST",
+      headers: {
+        "X-Shopify-Storefront-Access-Token": storefrontAccessToken,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query, variables }),
+    });
+
+    const data = await response.json();
+
+    if (data.errors) {
+      console.error("Shopify GraphQL errors:", data.errors);
+      throw new Error("Failed to create checkout");
+    }
+
+    if (data.data.checkoutCreate.checkoutUserErrors.length > 0) {
+      console.error("Checkout user errors:", data.data.checkoutCreate.checkoutUserErrors);
+      throw new Error("Failed to create checkout");
+    }
+
+    return data.data.checkoutCreate.checkout;
+  } catch (error) {
+    console.error("Error creating checkout:", error);
+    throw error;
+  }
+}

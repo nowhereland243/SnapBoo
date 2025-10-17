@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { useState } from "react";
+import { createCheckout } from "@/lib/shopify";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, getTotalItems, getTotalPrice } =
@@ -16,17 +17,33 @@ export default function CartPage() {
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     setIsCheckingOut(true);
-    // For now, show an alert. In production, this would redirect to Shopify checkout
-    alert(
-      `🎉 Checkout functionality coming soon!\n\n` +
-        `Your order:\n` +
-        `${totalItems} item${totalItems !== 1 ? "s" : ""}\n` +
-        `Total: $${totalPrice.toFixed(2)}\n\n` +
-        `We're connecting to Shopify's secure checkout. Stay tuned!`
-    );
-    setIsCheckingOut(false);
+
+    try {
+      // Convert cart items to Shopify line items format
+      const lineItems = items.map((item) => ({
+        variantId: item.variantId,
+        quantity: item.quantity,
+      }));
+
+      // Create Shopify checkout
+      const checkout = await createCheckout(lineItems);
+
+      // Redirect to Shopify checkout page
+      if (checkout && checkout.webUrl) {
+        window.location.href = checkout.webUrl;
+      } else {
+        throw new Error("No checkout URL received");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert(
+        "❌ Sorry, there was an error creating your checkout.\n\n" +
+          "Please try again or contact support if the problem persists."
+      );
+      setIsCheckingOut(false);
+    }
   };
 
   if (items.length === 0) {
