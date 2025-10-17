@@ -92,7 +92,9 @@ export default function HermesFeaturesShowcase() {
                   alt={feature.title}
                   fill
                   className={`object-contain transition-transform duration-500 ${
-                    index === 3
+                    index === 0
+                      ? "scale-[1.8] sm:scale-[2.0] md:scale-[2.2] group-hover:scale-[2.0] md:group-hover:scale-[2.4]"
+                      : index === 3
                       ? "group-hover:scale-105"
                       : "scale-[1.1] sm:scale-[1.15] md:scale-[1.2] group-hover:scale-[1.2] md:group-hover:scale-[1.3]"
                   }`}
