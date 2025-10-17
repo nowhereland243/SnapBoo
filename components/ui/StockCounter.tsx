@@ -30,9 +30,9 @@ export default function StockCounter({
 
   // Urgency level
   const getUrgencyColor = () => {
-    if (percentage <= 20) return "text-red-600";
-    if (percentage <= 50) return "text-orange-600";
-    return "text-primary-600";
+    if (percentage <= 20) return "text-red-800";
+    if (percentage <= 50) return "text-orange-800";
+    return "text-primary-800";
   };
 
   const getUrgencyBg = () => {
