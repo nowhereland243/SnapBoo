@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       "The first-ever MagSafe accessory designed exclusively for Labubu enthusiasts. Keep your favorite companion close, wherever you go.",
     images: [
       {
-        url: "/images/product/hero-labubu-magsafe.png",
+        url: "https://snap-boo.com/images/product/hero-labubu-magsafe.png",
         width: 1200,
         height: 630,
         alt: "SnapBoo Labubu MagSafe Grip",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "SnapBoo - The Ultimate Labubu MagSafe Grip",
     description:
       "The first-ever MagSafe accessory designed exclusively for Labubu enthusiasts.",
-    images: ["/images/product/hero-labubu-magsafe.png"],
+    images: ["https://snap-boo.com/images/product/hero-labubu-magsafe.png"],
   },
   robots: {
     index: true,
@@ -84,7 +84,7 @@ export default function RootLayout({
           data-key="BG1lGkGybEX0jCy8zE19iw"
           async
         />
-        
+
         {/* Umami Analytics */}
         <script
           defer
