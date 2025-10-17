@@ -7,7 +7,7 @@ import ProductDetails from "@/components/product/ProductDetails";
 import { notFound } from "next/navigation";
 
 // Force dynamic rendering to always fetch fresh data from Shopify
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function ProductPage({
@@ -44,9 +44,4 @@ export default async function ProductPage({
       <Footer />
     </div>
   );
-}
-
-// Generate static params for pre-rendering
-export async function generateStaticParams() {
-  return [{ handle: "labubu-grip" }];
 }
