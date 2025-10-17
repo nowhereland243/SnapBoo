@@ -73,7 +73,9 @@ export default function Home() {
                     className="object-cover scale-[1.2]"
                     style={{ objectPosition: "center 45%" }}
                     placeholder="blur"
-                    blurDataURL={blurDataURLs["/images/lifestyle/beach-scene.jpg"]}
+                    blurDataURL={
+                      blurDataURLs["/images/lifestyle/beach-scene.jpg"]
+                    }
                     loading="lazy"
                   />
                 </div>
