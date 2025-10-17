@@ -548,3 +548,5 @@ export default function Home() {
     </div>
   );
 }
+
+// Test: GitHub + Vercel integration working!
