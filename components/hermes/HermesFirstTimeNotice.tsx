@@ -107,11 +107,6 @@ export default function HermesFirstTimeNotice() {
               >
                 A FELLOW LABUBU FAN
               </p>
-              <div className="mt-3 md:mt-4 inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white border-[2px] md:border-[3px] border-black">
-                <span className="font-black text-xs md:text-sm">
-                  NEW YORK ↔️ SHANGHAI
-                </span>
-              </div>
             </div>
 
             {/* Call to Action */}
