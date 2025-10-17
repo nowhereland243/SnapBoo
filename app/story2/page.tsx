@@ -6,9 +6,9 @@ import HermesFirstTimeNotice from "@/components/hermes/HermesFirstTimeNotice";
 import HermesFeaturesShowcase from "@/components/hermes/HermesFeaturesShowcase";
 
 export const metadata = {
-  title: "Our Story 2.0 (Hermès Edition) - SnapBoo",
+  title: "SnapBoo Story",
   description:
-    "A heartwarming story about a mother, a son, and a little companion that keeps them connected across 10,000 miles. Experimental Hermès-inspired design.",
+    "A heartwarming story about a mother, a son, and a little companion that keeps them connected across 10,000 miles.",
 };
 
 export default function Story2Page() {
