@@ -26,7 +26,7 @@ export default async function ProductPage({
       <Header />
       <main className="flex-1 bg-white">
         {/* Product section */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-6 lg:py-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
             {/* Left: Image gallery - Hidden on mobile, shown on desktop */}
             <div className="hidden lg:block">

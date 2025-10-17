@@ -90,8 +90,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             </svg>
           </button>
           {openSections.includes("materials") && (
-            <div className="px-6 py-4 bg-gray-50 space-y-4">
-              <div className="prose max-w-none">
+            <div className="px-6 py-4 bg-gray-50">
+              <div className="prose max-w-none mb-3">
                 <ul className="space-y-2 text-gray-900">
                   <li className="text-gray-900">
                     <strong className="text-black">Core material:</strong>{" "}
@@ -115,7 +115,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                   collectible object, not just an accessory.
                 </p>
               </div>
-              <div className="relative h-[500px] md:h-[600px] rounded-lg overflow-hidden">
+              <div className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden">
                 <Image
                   src="/images/technical/sketch-diagram-1.png"
                   alt="Technical diagram"
