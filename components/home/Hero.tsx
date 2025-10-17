@@ -100,7 +100,7 @@ export default function Hero() {
               </div>
 
               <div className="animate-in fade-in slide-in-from-bottom duration-700 delay-400">
-                <StockCounter total={100} sold={0} />
+                <StockCounter total={100} sold={62} />
               </div>
 
               <div className="flex flex-col gap-3 pt-2 animate-in fade-in slide-in-from-bottom duration-700 delay-500">
@@ -248,7 +248,7 @@ export default function Hero() {
               <div className="col-span-5 space-y-6 flex flex-col items-end animate-in fade-in slide-in-from-right duration-700">
                 <PriceDisplay price={31.2} compareAtPrice={39} />
 
-                <StockCounter total={100} sold={0} />
+                <StockCounter total={100} sold={62} />
 
                 <div className="flex flex-col gap-4 pt-4 w-full max-w-xs">
                   <Link href="/product/labubu-grip">
