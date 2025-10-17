@@ -61,6 +61,14 @@ export default function Footer() {
                   Cart
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="text-gray-300 hover:text-pink-400 transition-colors"
+                >
+                  Terms & Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
