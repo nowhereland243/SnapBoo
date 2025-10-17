@@ -27,19 +27,24 @@ export default function CartPage() {
         quantity: item.quantity,
       }));
 
+      console.log("Creating checkout with line items:", lineItems);
+
       // Create Shopify checkout
       const checkout = await createCheckout(lineItems);
+
+      console.log("Checkout response:", checkout);
 
       // Redirect to Shopify checkout page
       if (checkout && checkout.webUrl) {
         window.location.href = checkout.webUrl;
       } else {
-        throw new Error("No checkout URL received");
+        throw new Error("No checkout URL received from Shopify");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Checkout error:", error);
       alert(
         "❌ Sorry, there was an error creating your checkout.\n\n" +
+          `Error: ${error.message || "Unknown error"}\n\n` +
           "Please try again or contact support if the problem persists."
       );
       setIsCheckingOut(false);

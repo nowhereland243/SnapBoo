@@ -269,9 +269,13 @@ export async function getProduct(handle: string) {
 }
 
 // 创建购物车 - 支持多个商品
-export async function createCheckout(lineItems: Array<{ variantId: string; quantity: number }>) {
+export async function createCheckout(
+  lineItems: Array<{ variantId: string; quantity: number }>
+) {
   const lineItemsString = lineItems
-    .map((item) => `{ variantId: "${item.variantId}", quantity: ${item.quantity} }`)
+    .map(
+      (item) => `{ variantId: "${item.variantId}", quantity: ${item.quantity} }`
+    )
     .join(", ");
 
   const query = `
@@ -301,14 +305,30 @@ export async function createCheckout(lineItems: Array<{ variantId: string; quant
     }
   `;
 
+  console.log("Shopify checkout query:", query);
+  
   const response = await ShopifyData(query);
   
-  if (response.data.checkoutCreate.checkoutUserErrors.length > 0) {
-    console.error("Checkout user errors:", response.data.checkoutCreate.checkoutUserErrors);
-    throw new Error("Failed to create checkout");
+  console.log("Shopify checkout response:", JSON.stringify(response, null, 2));
+
+  if (!response.data || !response.data.checkoutCreate) {
+    throw new Error("Invalid response from Shopify API");
   }
 
-  const checkout = response.data.checkoutCreate.checkout || {};
+  if (response.data.checkoutCreate.checkoutUserErrors && 
+      response.data.checkoutCreate.checkoutUserErrors.length > 0) {
+    const errors = response.data.checkoutCreate.checkoutUserErrors;
+    console.error("Checkout user errors:", errors);
+    const errorMessages = errors.map((e: any) => e.message).join(", ");
+    throw new Error(`Shopify checkout error: ${errorMessages}`);
+  }
+
+  const checkout = response.data.checkoutCreate.checkout;
+  
+  if (!checkout || !checkout.webUrl) {
+    throw new Error("No checkout URL received from Shopify");
+  }
+  
   return checkout;
 }
 
